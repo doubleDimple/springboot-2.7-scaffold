@@ -9,9 +9,9 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.example</groupId>
+    <groupId>com.doubleDimple</groupId>
     <artifactId>scaffold-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>scaffold-server</name>
     <description>scaffold-server</description>
 
