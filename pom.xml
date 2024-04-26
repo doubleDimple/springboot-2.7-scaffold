@@ -3,31 +3,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version>
-        <relativePath/>
-    </parent>
-
-    <groupId>com.github.cuifuan</groupId>
-    <artifactId>springboot-scaffold</artifactId>
-    <version>1.0.0</version>
-    <name>springboot-scaffold</name>
     <description>Spring Boot 2.7.2脚手架</description>
+
+
+    <groupId>com.doubleDimple.scaffold</groupId>
+    <artifactId>springboot-scaffold</artifactId>
     <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <spring.version>2.7.2</spring.version>
+        <jackon.version>2.13.3</jackon.version>
+    </properties>
 
     <modules>
         <module>scaffold-common</module>
         <module>scaffold-server</module>
     </modules>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
+    <dependencyManagement>
     <dependencies>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -36,18 +35,26 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.3</version>
+            <version>${jackon.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.3</version>
+            <version>${jackon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+    </dependencyManagement>
 </project>
