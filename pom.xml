@@ -24,6 +24,9 @@
         <spring.version>2.7.2</spring.version>
         <web.version>2.7.6</web.version>
         <jackon.version>2.13.3</jackon.version>
+        <druid.version>1.2.16</druid.version>
+        <mysql-connector>5.1.47</mysql-connector>
+        <mybatis.spring.version>2.2.0</mybatis.spring.version>
     </properties>
 
     <modules>
@@ -33,7 +36,6 @@
 
     <dependencyManagement>
     <dependencies>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -67,6 +69,32 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- MySQL 连接驱动依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector}</version>
+        </dependency>
+
+        <!-- Spring Boot Mybatis 依赖 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.spring.version}</version>
         </dependency>
     </dependencies>
     </dependencyManagement>

@@ -1,0 +1,17 @@
+2024-04-27 21:45 [main] INFO  c.example.scaffoldserver.ScaffoldServerApplication[55] - Starting ScaffoldServerApplication using Java 1.8.0_211 on admindeMacBook-Pro.local with PID 19944 (/Users/admin/IdeaProjects/springboot-2.7-scaffold/scaffold-server/target/classes started by admin in /Users/admin/IdeaProjects/springboot-2.7-scaffold)
+2024-04-27 21:45 [main] INFO  c.example.scaffoldserver.ScaffoldServerApplication[637] - The following 1 profile is active: "dev"
+2024-04-27 21:45 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner[44] - No MyBatis mapper was found in '[com.example.scaffoldserver]' package. Please check your configuration.
+2024-04-27 21:45 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer[108] - Tomcat initialized with port(s): 9087 (http)
+2024-04-27 21:45 [main] INFO  org.apache.coyote.http11.Http11NioProtocol[173] - Initializing ProtocolHandler ["http-nio-9087"]
+2024-04-27 21:45 [main] INFO  org.apache.catalina.core.StandardService[173] - Starting service [Tomcat]
+2024-04-27 21:45 [main] INFO  org.apache.catalina.core.StandardEngine[173] - Starting Servlet engine: [Apache Tomcat/9.0.69]
+2024-04-27 21:45 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/][173] - Initializing Spring embedded WebApplicationContext
+2024-04-27 21:45 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext[292] - Root WebApplicationContext: initialization completed in 1017 ms
+2024-04-27 21:45 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure[55] - Init DruidDataSource
+2024-04-27 21:45 [main] INFO  com.alibaba.druid.pool.DruidDataSource[996] - {dataSource-1} inited
+2024-04-27 21:45 [main] INFO  org.apache.coyote.http11.Http11NioProtocol[173] - Starting ProtocolHandler ["http-nio-9087"]
+2024-04-27 21:45 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/][173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-27 21:45 [main] INFO  org.springframework.web.servlet.DispatcherServlet[525] - Initializing Servlet 'dispatcherServlet'
+2024-04-27 21:45 [main] INFO  org.springframework.web.servlet.DispatcherServlet[547] - Completed initialization in 1 ms
+2024-04-27 21:45 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer[220] - Tomcat started on port(s): 9087 (http) with context path ''
+2024-04-27 21:45 [main] INFO  c.example.scaffoldserver.ScaffoldServerApplication[61] - Started ScaffoldServerApplication in 2.707 seconds (JVM running for 3.328)
