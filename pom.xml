@@ -27,11 +27,14 @@
         <druid.version>1.2.16</druid.version>
         <mysql-connector>5.1.47</mysql-connector>
         <mybatis.spring.version>2.2.0</mybatis.spring.version>
+        <jwt.version>0.9.1</jwt.version>
+        <security.version>2.3.12.RELEASE</security.version>
     </properties>
 
     <modules>
         <module>scaffold-common</module>
         <module>scaffold-server</module>
+        <module>security-jwt</module>
     </modules>
 
     <dependencyManagement>
@@ -103,6 +106,31 @@
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- spring security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${security.version}</version>
+        </dependency>
+        <!-- jwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+
+        <!--swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
     </dependencyManagement>

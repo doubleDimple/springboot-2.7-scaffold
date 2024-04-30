@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.securityjwt.mapper.UserMapper">
+
+	<!--实体映射-->
+	<resultMap id="base_result_map" type="com.example.securityjwt.entity.pojo.User">
+		<!---->
+		<id column="userId" property="userId"  />
+		<!---->
+		<result column="userName" property="userName"  />
+		<!---->
+		<result column="password" property="password"  />
+		<!---->
+		<result column="userAge" property="userAge"  />
+		<!---->
+		<result column="Role" property="role"  />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="base_column_list">
+		 `userId`,`userName`,`password`,`userAge`,`Role`
+	</sql>
+
+	<sql id="base_condition_filed">
+			<if test="userId != null">
+				 and  `userId` = #{userId}
+			</if>
+			<if test="userName != null and userName !=''">
+				 and  `userName` = #{userName}
+			</if>
+			<if test="password != null and password !=''">
+				 and  `password` = #{password}
+			</if>
+			<if test="userAge != null and userAge !=''">
+				 and  `userAge` = #{userAge}
+			</if>
+			<if test="role != null and role !=''">
+				 and  `Role` = #{role}
+			</if>
+	</sql>
+	<!-- 通用条件列-->
+	<sql id="base_condition">
+	 <where> <include refid="base_condition_filed" />	 </where>
+	</sql>
+
+	<!-- 通用查询条件列-->
+	<sql id="query_condition">
+	 <where>
+			<include refid="base_condition_filed" />
+			<if test="userNameFuzzy != null  and userNameFuzzy != ''">
+				 and  `userName` like concat('%', #{userNameFuzzy}, '%')
+			</if>
+			<if test="passwordFuzzy != null  and passwordFuzzy != ''">
+				 and  `password` like concat('%', #{passwordFuzzy}, '%')
+			</if>
+			<if test="userAgeFuzzy != null  and userAgeFuzzy != ''">
+				 and  `userAge` like concat('%', #{userAgeFuzzy}, '%')
+			</if>
+			<if test="roleFuzzy != null  and roleFuzzy != ''">
+				 and  `Role` like concat('%', #{roleFuzzy}, '%')
+			</if>
+	 </where>
+	</sql>
+
+	<!-- 查询集合-->
+	<select id="selectList" resultMap="base_result_map" >
+		 SELECT <include refid="base_column_list" /> FROM `user` <include refid="query_condition" />
+		 <if test="orderBy!=null">
+			 order by ${orderBy}
+		 </if>
+		 <if test="page!=null">
+			 limit #{page.start},#{page.end}
+		 </if>
+	</select>
+
+	<!-- 查询数量-->
+	<select id="selectCount" resultType="java.lang.Integer" >
+		 SELECT count(1) FROM `user` <include refid="query_condition" />
+	</select>
+
+	<!-- 插入 （匹配有值的字段）-->
+	<insert id="insert" parameterType="com.example.securityjwt.entity.pojo.User">
+		 INSERT INTO `user`
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="userId != null">
+				 `userId`,
+			</if>
+			<if test="userName != null">
+				 `userName`,
+			</if>
+			<if test="password != null">
+				 `password`,
+			</if>
+			<if test="userAge != null">
+				 `userAge`,
+			</if>
+			<if test="role != null">
+				 `Role`,
+			</if>
+		 </trim>
+		 <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="userId!=null">
+				 #{userId},
+			</if>
+			<if test="userName!=null">
+				 #{userName},
+			</if>
+			<if test="password!=null">
+				 #{password},
+			</if>
+			<if test="userAge!=null">
+				 #{userAge},
+			</if>
+			<if test="role!=null">
+				 #{role},
+			</if>
+		 </trim>
+	</insert>
+
+	<!-- 插入 （根据表名称插入）-->
+	<insert id="insertWidthTableName" parameterType="com.example.securityjwt.entity.pojo.User">
+		 INSERT INTO `${tableName}`(`userId`,`userName`,`password`,`userAge`,`Role`)values(
+			 #{bean.userId},#{bean.userName},#{bean.password},#{bean.userAge},#{bean.role})
+		ON DUPLICATE KEY UPDATE 
+		`userId` = values(`userId`),`userName` = values(`userName`),`password` = values(`password`),`userAge` = values(`userAge`),`Role` = values(`Role`)
+	</insert>
+
+	<!-- 添加 （批量插入或修改）-->
+		<insert id="insertBatch" parameterType="com.example.securityjwt.entity.pojo.User">
+		 INSERT INTO `user`
+		 <trim prefix="(" suffix=")" suffixOverrides=",">
+			`id`,
+		 <if test="list[0].userId!= null">
+		 `userId`,
+		 </if>
+		 <if test="list[0].userName!= null">
+		 `userName`,
+		 </if>
+		 <if test="list[0].password!= null">
+		 `password`,
+		 </if>
+		 <if test="list[0].userAge!= null">
+		 `userAge`,
+		 </if>
+		 <if test="list[0].Role!= null">
+		 `Role`,
+		 </if>
+		</trim>
+		values
+			 <foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.id},
+		 <if test="list[0].userId!= null">
+		 #{item.userId},
+		 </if>
+		 <if test="list[0].userName!= null">
+		 #{item.userName},
+		 </if>
+		 <if test="list[0].password!= null">
+		 #{item.password},
+		 </if>
+		 <if test="list[0].userAge!= null">
+		 #{item.userAge},
+		 </if>
+		 <if test="list[0].Role!= null">
+		 #{item.role},
+		 </if>
+
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		
+		<trim suffixOverrides="," >
+		 <if test="list[0].userId!= null">
+		 `userId`= values(`userId`),
+		 </if>
+		 <if test="list[0].userName!= null">
+		 `userName`= values(`userName`),
+		 </if>
+		 <if test="list[0].password!= null">
+		 `password`= values(`password`),
+		 </if>
+		 <if test="list[0].userAge!= null">
+		 `userAge`= values(`userAge`),
+		 </if>
+		 <if test="list[0].Role!= null">
+		 `Role`= values(`Role`),
+		 </if>
+
+		</trim>
+		</insert>
+
+	<!-- 根据PrimaryKey修 改-->
+	<update id="updateByPrimaryKey" parameterType="com.example.securityjwt.entity.pojo.User">
+		 UPDATE `user`
+ 		 <set> 
+			<if test="bean.userName != null">
+				 `userName` = #{bean.userName},
+			</if>
+			<if test="bean.password != null">
+				 `password` = #{bean.password},
+			</if>
+			<if test="bean.userAge != null">
+				 `userAge` = #{bean.userAge},
+			</if>
+			<if test="bean.role != null">
+				 `Role` = #{bean.role},
+			</if>
+ 		 </set>
+ 		 where `userId`=#{userId}
+	</update>
+
+	<!-- 根据PrimaryKey删除-->
+	<delete id="deleteByPrimaryKey">
+		delete from `user` where `userId`=#{userId}
+	</delete>
+
+	<!-- 根据PrimaryKey获取对象-->
+	<select id="selectByPrimaryKey" resultMap="base_result_map" >
+		select <include refid="base_column_list" /> from `user` where `userId`=#{userId}
+	</select>
+
+</mapper>
