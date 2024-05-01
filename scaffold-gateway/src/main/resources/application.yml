@@ -1,0 +1,16 @@
+server:
+  port: 9087
+  servlet:
+    context-path: /
+
+spring:
+  main:
+    allow-circular-references: true
+  mvc:
+    servlet:
+      load-on-startup: 0
+  application:
+    name: scaffold-gateway
+
+  profiles:
+    active: dev

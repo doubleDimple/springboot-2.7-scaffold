@@ -1,0 +1,4 @@
+
+logging:
+  level:
+    com.example.oraclejdbc.dao.mapper: debug
